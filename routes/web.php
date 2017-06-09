@@ -12,5 +12,10 @@
 */
 
 Route::get('/', 'ControllerTest@home');
-Route::get('/kur', 'ControllerTest@kur');
+//Route::get('/kur', 'ControllerTest@kur');
 
+Route::get('/kur', function()
+{
+	$users = DB::table('db-test')->get();
+	return $users;
+});
