@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +14,5 @@
 
 Route::get('/', 'ControllerTest@home');
 //Route::get('/kur', 'ControllerTest@kur');
+Route::get('/kur', 'ControllerTest@dbase');
 
-Route::get('/kur', function()
-{
-	$users = DB::table('db-test')->get();
-	return $users;
-});
