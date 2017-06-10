@@ -10,7 +10,7 @@ class User extends model
 {
     use Notifiable;
 
-    protected $table = 'db-test';
+    protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *
