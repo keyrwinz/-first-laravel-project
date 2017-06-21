@@ -1,10 +1,5 @@
-<!doctype html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-</head>
-<body>
+@extends ('layouts.default')
+	
+@section ('show')
 	<h1>Hello, {{ $user->username }}</h1>
-</body>
-</html>
+@stop
