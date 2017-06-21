@@ -28,11 +28,11 @@ class UsersController extends BaseController
 
     public function create()
     {
-    	return 'Creates user.';
+    	return View::make('users.create');
     }
 
-    public function edit()
+    public function store()
     {
-    	return 'Edits user.';
+    	return 'User created';
     }
 }
