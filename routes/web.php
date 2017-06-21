@@ -15,6 +15,6 @@ use App\Models\User;
 Route::get('/', 'ControllerTest@home');
 Route::get('/kur', 'ControllerTest@kur');
 //Route::get('/kur', 'ControllerTest@dbase');
-Route::get('users', 'UsersController@index');
-Route::get('users/{username}', 'UsersController@show');
-
+//Route::get('users', 'UsersController@index');
+//Route::get('users/{username}', 'UsersController@show');
+Route::resource('users', 'UsersController');
