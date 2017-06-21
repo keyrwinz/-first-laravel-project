@@ -25,4 +25,14 @@ class UsersController extends BaseController
 
 		return View::make('users.show', ['user' => $user]);
     }
+
+    public function create()
+    {
+    	return 'Creates user.';
+    }
+
+    public function edit()
+    {
+    	return 'Edits user.';
+    }
 }
