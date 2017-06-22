@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use App\Models\User;
@@ -35,6 +36,18 @@ class UsersController extends BaseController
 
     public function store()
     {
+    	/*
+    	$validation = Validator::make(Input::all(), User::$rules);
+
+    	if ($validation->fails())
+    	{
+    		return Redirect::back()->withInput()->withErrors($validation->messages());
+    	}*/
+    	if ( ! User::isValid(Input::all()))
+    	{
+    		return Redirect::back()->withInput()->withErrors(User::$errors);
+    	}
+
     	$user = new User;
     	$user->username = Input::get('username');
     	$user->email = Input::get('email');
