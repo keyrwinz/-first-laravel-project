@@ -7,6 +7,11 @@
 			{{ Form::label('username', 'Username: ') }}
 			{{ Form::text('username') }}
 		</div>
+		
+		<div>
+			{{ Form::label('email', 'EmailAdd: ') }}
+			{{ Form::text('email') }}
+		</div>
 
 		<div>
 			{{ Form::label('password', 'Password: ') }}

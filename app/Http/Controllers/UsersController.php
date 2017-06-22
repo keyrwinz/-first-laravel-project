@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;
 use App\Models\User;
 use Illuminate\Http\Request;
-use View;
+use View, Hash;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -33,6 +35,12 @@ class UsersController extends BaseController
 
     public function store()
     {
-    	return 'User created';
+    	$user = new User;
+    	$user->username = Input::get('username');
+    	$user->email = Input::get('email');
+    	$user->password = Hash::make(Input::get('password'));
+    	$user->save();
+
+    	return Redirect::to('/users');
     }
 }
