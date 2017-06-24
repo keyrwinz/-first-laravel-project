@@ -37,9 +37,9 @@ class User extends model
         'password', 'remember_token',
     ];
 
-    public function isValid($data)
+    public function isValid()
     {
-        $validation = Validator::make($data, static::$rules);
+        $validation = Validator::make($this->attributes, static::$rules);
 
         if ($validation->passes()) return true;
 

@@ -50,12 +50,14 @@ class UsersController extends BaseController
     	{
     		return Redirect::back()->withInput()->withErrors($validation->messages());
     	}*/
-    	if ( ! $this->user->isValid(Input::all()))
+    	$input = Input::all();
+
+    	if ( ! $this->user->fill($input)->isValid(Input::all()))
     	{
     		return Redirect::back()->withInput()->withErrors($this->user->errors);
     	}
 
-    	$this->user->create(Input::all());
+    	$this->user->save();
 
     	return Redirect::to('/users');
     }
