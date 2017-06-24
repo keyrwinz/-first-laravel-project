@@ -18,7 +18,7 @@ class User extends model
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'email', 'password',
     ];
 
     public static $rules= [
