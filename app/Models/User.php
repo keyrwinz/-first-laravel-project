@@ -27,7 +27,7 @@ class User extends model
         'password' => 'required'
     ];
 
-    public static $errors;
+    public $errors;
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -37,13 +37,13 @@ class User extends model
         'password', 'remember_token',
     ];
 
-    public static function isValid($data)
+    public function isValid($data)
     {
         $validation = Validator::make($data, static::$rules);
 
         if ($validation->passes()) return true;
 
-        static::$errors = $validation->messages();
+        $this->errors = $validation->messages();
 
         return false;
     }

@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
+use View, Hash;
 use App\Models\User;
 use Illuminate\Http\Request;
-use View, Hash;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -15,16 +15,23 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class UsersController extends BaseController
 {
+	protected $user;
+	
+	public function __construct(User $user)
+	{
+		$this->user = $user;
+	}
+
     public function index()
     {
-    	$users = User::all();
+    	$users = $this->user->all();
 
 		return View::make('users.index', ['users' => $users]);
     }
  	
  	public function show($username)
     {
-    	$user = User::whereUsername($username)->first();
+    	$user = $this->user->whereUsername($username)->first();
 
 		return View::make('users.show', ['user' => $user]);
     }
@@ -43,16 +50,12 @@ class UsersController extends BaseController
     	{
     		return Redirect::back()->withInput()->withErrors($validation->messages());
     	}*/
-    	if ( ! User::isValid(Input::all()))
+    	if ( ! $this->user->isValid(Input::all()))
     	{
-    		return Redirect::back()->withInput()->withErrors(User::$errors);
+    		return Redirect::back()->withInput()->withErrors($this->user->errors);
     	}
 
-    	$user = new User;
-    	$user->username = Input::get('username');
-    	$user->email = Input::get('email');
-    	$user->password = Hash::make(Input::get('password'));
-    	$user->save();
+    	$this->user->create(Input::all());
 
     	return Redirect::to('/users');
     }
